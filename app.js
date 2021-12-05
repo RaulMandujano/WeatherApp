@@ -13,10 +13,13 @@ fetch('https://api.openweathermap.org/data/2.5/weather?q='+input.value+'&appid=d
   const tempValue = data.main.temp;
   const nameValue = data.name;
   const descValue = data['weather'][0]['description'];
+  const cloudValue = data['weather'][0]['main'];
 
   main.innerHTML = nameValue;
   desc.innerHTML = "Desc - "+descValue;
   temp.innerHTML = "Temp - "+tempValue;
+  cloud.innerHTML = "Weather -"+cloudValue;
+
   input.value ="";
 
   console.log(data)
