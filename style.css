@@ -36,15 +36,20 @@ body .container{
     margin: auto;
 }
 
-body .container h1{
+body .name{
     font-size: 30px;
     letter-spacing: 4px;
     margin-bottom: 15px;
 }
 
+body .temp {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
 body div.card{
     background-color:white;
-    border-radius: 20px;
+    border-radius: 10px;
     width: 15rem;
     height: 17rem;
     padding-top: 20px;
@@ -62,6 +67,7 @@ body div.card{
     text-decoration: none;
     font-size: 16px;
     margin-top: 20px;
+    border-radius: 8px;
 }
 .btn-weather:hover{
     background-color: darkgreen;
