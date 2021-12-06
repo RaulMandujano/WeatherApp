@@ -28,6 +28,13 @@ body  .submit:hover{
     background-color: darkgreen;
 }
 
+body .title h1{
+    font-size: 40px;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
 body .container{
     background-color: gray;
     width: 70%;
@@ -37,7 +44,7 @@ body .container{
 }
 
 body .name{
-    font-size: 30px;
+    font-size: 40px;
     letter-spacing: 4px;
     margin-bottom: 15px;
 }
@@ -50,10 +57,14 @@ body .temp {
 body div.card{
     background-color:white;
     border-radius: 10px;
-    width: 15rem;
-    height: 17rem;
+    width: 20rem;
+    height: auto;
     padding-top: 20px;
     text-align: center;
+}
+
+.container .card p{
+    margin-bottom: 10px;
 }
 
 .btn-weather{
@@ -67,6 +78,7 @@ body div.card{
     text-decoration: none;
     font-size: 16px;
     margin-top: 20px;
+    margin-bottom: 15px;
     border-radius: 8px;
 }
 .btn-weather:hover{
