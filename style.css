@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap');
+
 body {
     background-color: white;
 }
@@ -5,20 +7,22 @@ body {
 body .input{
     margin: auto;
     width: 50%;
-    padding: 10px;
+    padding: auto;
 }
 
 body .input_text{
     width: 70%;
     height: 40px;
     text-align: center;
+    border: none;
+    margin-bottom: 40px;
 }
 body  .submit{
     background-color: #4CAF50; /* Green */
-    width: 23%;
+    width: 4rem;
+    height: 3rem;
   border: none;
   color: white;
-  padding: 15px 25px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -36,16 +40,18 @@ body .title h1{
 }
 
 body .container{
-    background-color: gray;
+    background-image: url("images.jpeg");
     width: 70%;
+    height: 27rem;
     padding: 40px;
     border-radius: 30px;
     margin: auto;
+    font-family: 'Roboto Mono', monospace;
 }
 
 body .name{
     font-size: 40px;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     margin-bottom: 15px;
 }
 
@@ -55,10 +61,10 @@ body .temp {
 }
 
 body div.card{
-    background-color:white;
+    background-color: rgba( 666, 666, 666, 0.7);
     border-radius: 10px;
     width: 20rem;
-    height: auto;
+    height: 20rem;
     padding-top: 20px;
     text-align: center;
 }
