@@ -1,92 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap');
-
-body {
-    background-color: white;
-}
-
-body .input{
+.result-container-all{
+    background-color: gray;
     margin: auto;
-    width: 50%;
-    padding: auto;
+    width: 90%;
+    padding: 25px;
 }
-
-body .input_text{
-    width: 70%;
-    height: 40px;
-    text-align: center;
-    border: none;
-    margin-bottom: 40px;
-}
-body  .submit{
-    background-color: #4CAF50; /* Green */
-    width: 4rem;
-    height: 3rem;
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-body  .submit:hover{
-    background-color: darkgreen;
-}
-
-body .title h1{
-    font-size: 40px;
-    text-align: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
-
-body .container{
-    background-image: url("images.jpeg");
-    width: 70%;
-    height: 27rem;
-    padding: 40px;
-    border-radius: 30px;
-    margin: auto;
-    font-family: 'Roboto Mono', monospace;
-}
-
-body .name{
-    font-size: 40px;
-    letter-spacing: 3px;
-    margin-bottom: 15px;
-}
-
-body .temp {
-    font-size: 25px;
-    margin-bottom: 15px;
-}
-
-body div.card{
-    background-color: rgba( 666, 666, 666, 0.7);
-    border-radius: 10px;
-    width: 20rem;
-    height: 20rem;
-    padding-top: 20px;
-    text-align: center;
-}
-
-.container .card p{
-    margin-bottom: 10px;
-}
-
-.btn-weather{
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 5px 12px;
-    width: 6rem;
-    font-size: 5px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
+.result-container{
     margin-top: 20px;
-    margin-bottom: 15px;
-    border-radius: 8px;
+    max-width: 95%;
 }
-.btn-weather:hover{
-    background-color: darkgreen;
+.cities-containers {
+    position: relative;
+    padding: 35px;
+    background-color: rgba(666, 666, 666, 0.6);
+    border-radius: 20px;
+    width: 12rem;
+    margin: auto 5px;
+    text-align: center;
+}
+
+.cities-containers:hover .city-close {
+    opacity: 1;
+}
+.city-close {
+    position: absolute;
+    color: red;
+    top: 20px;
+    right: 20px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.city-temp {
+    font-size: 32px;
+}
+
+.city-name {
+    font-size: 18px;
+}
+
+.saved-cities-container{
+    background-color: gray;
+    margin: auto;
+    height: 25rem;
+    width: 90%;
+    padding: 25px;
 }
