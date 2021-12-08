@@ -15,10 +15,13 @@
 
 <header>
 
-    <!-- As a heading -->
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">WEATHER APP</span>
+            <a class="navbar-brand">Navbar</a>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
     </nav>
 
@@ -26,50 +29,46 @@
 
 <body>
 
-    <!-- Button trigger modal -->
+    <!-- Location / Local Time / Date -->
 
-    <div class="justify-content-center d-flex flex-column align-items-center result-container-all">
+    <div class="container">
+        <div class="current-info">
 
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCityModal">
-            Find a City
-        </button>
-
-        <div class="d-flex result-container" id="cities-locations">
-
-        </div>
-
-    </div>
-
-<br/><br/>
-    <!-- Save cities -->
-
-    <div  class="saved-cities-container">
-        <h1>Cities Saved</h1>
-
-        <div class="cities-saved">
-
-        </div>
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="addCityModal" tabindex="-1" aria-labelledby="addCityModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addCityModalLabel">Add a new City</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="date-container">
+                <div class="time" id="time">
+                    6:00<span id="am-pm">PM</span>
                 </div>
-                <div class="modal-body">
-                    <input id="cityName" type="text" class="form-control">
+                <div class="date" id="date">
+                    Tuesday 7 Dec
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="saveCity" type="button" class="btn btn-primary">Save</button>
-                </div>
+
+            </div>
+
+            <div class="place-container">
+                <div class="time-zone" id="time-zone"></div>
+                <div id="country" class="country"></div>
             </div>
         </div>
+
+
     </div>
+
+    <!-- Current Weather -->
+
+    <div id="current-temp">
+
+    </div>
+
+    <!-- Forecast Weather -->
+
+    <div class="future-forecast">
+
+        <div class="weather-forecast" id="weather-forecast">
+           
+        </div>
+    </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
         integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
