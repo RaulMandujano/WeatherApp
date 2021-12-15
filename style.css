@@ -70,19 +70,28 @@ body {
   justify-content: space-between;
 }
 
+/* .hourly-weather {
+  
+} */
+.current-temp {
+  display: inline;
+}
 .current-weather {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 10px auto;
-  width: 30%;
+  float: left;
+  width: 50%;
   height: 15rem;
   border: 1px solid #eee;
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.4);
   color: #eee;
   text-align: center;
+  padding: 30px;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 30px;
 }
 
 .forecast-weather {
@@ -92,8 +101,23 @@ body {
   margin-right: 10px;
   padding: 10px;
   width: 10rem;
-  height: 20rem;
+  height: 25rem;
   border-radius: 10px;
+}
+
+.future-forecast {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.hourly-weather-list {
+  display: inline-block;
+  overflow: auto;
+  width: 15rem;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
 }
 
 .day {

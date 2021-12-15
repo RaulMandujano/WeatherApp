@@ -19,7 +19,17 @@
 
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand">Navbar</a>
+            
+            <li class="nav-item dropdown">
+                <a class="navbar-brand">Navbar</a>
+                <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Cities Saved
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">London</a></li>
+                </ul>
+            </li>
+
             <form class="d-flex">
                 <input id="city" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit" onclick="cityname();">Search</button>
@@ -57,11 +67,11 @@
     </div>
 
     <!-- Current Weather -->
-
+<div>
     <div id="current-temp">
         
-
     </div>
+</div>
 
     <!-- Forecast Weather -->
 
@@ -75,11 +85,11 @@
     <!-- Hourly -->
 
     <div class="future-forecast">
-            <div id="hourly-weather">
 
-                
+        <div id="hourly-weather">
 
-            </div>
+
+        </div>
     </div>
 
 
