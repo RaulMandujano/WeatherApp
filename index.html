@@ -22,13 +22,17 @@
             
             <li class="nav-item dropdown">
                 <a class="navbar-brand">Navbar</a>
-                <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Cities Saved
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">London</a></li>
                 </ul>
             </li>
+
+            <form class="d-flex">
+                <input id="addCity" class="form-control me-2" type="search" placeholder="Add City" aria-label="Add City">
+                <button class="btn btn-outline-success" type="submit" onclick="addcity();">Add </button>
+            </form>
 
             <form class="d-flex">
                 <input id="city" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

@@ -1,39 +1,61 @@
 //key: 9a797f1496834c0f832210746210312
 
+let cityToSave = ''
+
 const cityname = () => {
-  let input = document.getElementById('city').value
-  localStorage.setItem('city', input)
+  const cityName = document.getElementById('city').value
+  cityToSave = cityName
+  fetchData(cityName)
 }
 
-fetch(
-  `http://api.weatherapi.com/v1/forecast.json?key=9a797f1496834c0f832210746210312&q==${localStorage.getItem(
-    'city',
-  )}&days=7`,
-)
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data)
-    datafetched = [...data.forecast.forecastday]
-    document.getElementById('time-zone').innerHTML = data.location.tz_id
-    document.getElementById('country').innerHTML = data.location.country
-    renderCurrent(data)
-    renderDays(data.forecast.forecastday)
-  })
+const fetchData = (cityName) => {
+  fetch(
+    `http://api.weatherapi.com/v1/forecast.json?key=9a797f1496834c0f832210746210312&q==${cityName},
+    )}&days=7`,
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+      datafetched = [...data.forecast.forecastday]
+      document.getElementById('time-zone').innerHTML = data.location.tz_id
+      document.getElementById('country').innerHTML = data.location.country
+      renderCurrent(data)
+      renderDays(data.forecast.forecastday)
+    })
+}
+
+fetchData('london')
+
+let cityList = []
+
+const fetchDropDownList = () => {
+  // const myData = await fetch('https://weather-app-raulmandujano-default-rtdb.firebaseio.com/cityList.json')
+  fetch(
+    'https://weather-app-raulmandujano-default-rtdb.firebaseio.com/cityList.json',
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      renderDropDown(data)
+      cityList = data
+    })
+    .catch((error) => {
+      console.error('Error:', error)
+    })
+}
+
+fetchDropDownList()
 
 const renderCurrent = (data) => {
-  document.getElementById(
-    'current-temp',
-  ).innerHTML = `
+  document.getElementById('current-temp').innerHTML = `
   <div class="current-weather">
-    <img src="${data.current.condition.icon}" alt="weather icon" class="w-icon">
+    <img src="http:${data.current.condition.icon}" alt="weather icon" class="w-icon">
     <div class="other">
       <div class="temp">${data.current.condition.text}</div>
-      
       <div class="temp">${data.current.temp_f} &#176; F</div>
       <div class="temp">${data.current.humidity} <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M406.043 316c24.11 96.443-50.59 180-150 180s-174.405-82.38-150-180c15-60 90-150 150-300 60 150 135 240 150 300z"></path></svg></div>
       <div class="temp">${data.current.wind_mph} mph <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path></svg></div>
     </div>
-    <button>Save</button>
+    <button onclick="saveCity('${data.current.condition.text}')">Save</button>
   </div>
   
   <div class="current-weather">
@@ -73,7 +95,9 @@ const renderDays = (forecastDays) => {
 }
 
 const generateDOMElement = (data) => `<div class="forecast-weather">
-    <img src="${data.day.condition.icon}" alt="weather icon" class="w-icon">
+    <img src="http:${
+      data.day.condition.icon
+    }" alt="weather icon" class="w-icon">
     <div class="other">
     <div class="day">${getDayName(data.date)}</div>
         <div class="temp">${data.day.condition.text}</div>
@@ -98,7 +122,7 @@ function generateHourlyDOMElement(data) {
     .map(
       (forecastHourly) =>
         `<div class="hourly-weather-list">
-  <img src="${forecastHourly.condition.icon}" alt="weather icon" class="w-icon">
+  <img src="http:${forecastHourly.condition.icon}" alt="weather icon" class="w-icon">
   <div>${forecastHourly.condition.text}</div>
   <div>${forecastHourly.time}</div>
   <div>${forecastHourly.temp_f} <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M416 0c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm0 128c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm-160-16C256 50.1 205.9 0 144 0S32 50.1 32 112v166.5C12.3 303.2 0 334 0 368c0 79.5 64.5 144 144 144s144-64.5 144-144c0-34-12.3-64.9-32-89.5V112zM144 448c-44.1 0-80-35.9-80-80 0-25.5 12.2-48.9 32-63.8V112c0-26.5 21.5-48 48-48s48 21.5 48 48v192.2c19.8 14.8 32 38.3 32 63.8 0 44.1-35.9 80-80 80zm16-125.1V304c0-8.8-7.2-16-16-16s-16 7.2-16 16v18.9c-18.6 6.6-32 24.2-32 45.1 0 26.5 21.5 48 48 48s48-21.5 48-48c0-20.9-13.4-38.5-32-45.1z"></path></svg></div>
@@ -112,4 +136,61 @@ const getDayName = (date) => {
 
   const newDate = new Date(date)
   return newDate.toLocaleDateString({}, { weekday: 'short' })
+}
+
+const addcity = () => {
+  const cityName = document.getElementById('addCity').value
+
+  cityList.push(cityName)
+
+  renderDropDown(cityList)
+
+  const data = { cityList }
+
+  updateDatabase(data)
+}
+
+const updateDatabase = (data) => {
+  fetch('https://weather-app-raulmandujano-default-rtdb.firebaseio.com/.json', {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data)
+    })
+    .catch((error) => {
+      console.error('Error:', error)
+    })
+}
+
+const renderDropDown = (cityList) => {
+  document.querySelector('.dropdown-menu').innerHTML = cityList
+    .map(
+      (element, index) =>
+        `<li><a class="dropdown-item" href="#"   
+  onclick="showCity('${element}')" >${element}</a>
+  <button onclick="deleteCity('${index}')">Delete</button>
+  </li>`,
+    )
+    .join('')
+}
+
+const showCity = (name) => {
+  fetchData(name)
+}
+
+const deleteCity = (index) => {
+  cityList.splice(index, 1)
+  renderDropDown(cityList)
+  const data = { cityList }
+  updateDatabase(data)
+}
+
+const saveCity = () => {
+  if (cityToSave) {
+    cityList.push(cityToSave)
+    renderDropDown(cityList)
+    updateDatabase(cityList)
+  }
 }
