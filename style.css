@@ -8,7 +8,8 @@
 
 body {
   background: url('https://images.unsplash.com/photo-1621274403997-37aace184f49?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1');
-  background-repeat: repeat;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
   /* overflow: hidden; */
   height: 100vh;
@@ -98,9 +99,9 @@ body {
   color: white;
   text-align: center;
   border: 1px solid #eee;
-  margin-right: 10px;
+  margin: 50px 10px;
   padding: 10px;
-  width: 10rem;
+  width: 12rem;
   height: 25rem;
   border-radius: 10px;
 }
