@@ -10,15 +10,15 @@ const cityname = () => {
 
 const fetchData = (cityName) => {
   fetch(
-    `http://api.weatherapi.com/v1/forecast.json?key=9a797f1496834c0f832210746210312&q==${cityName},
-    )}&days=7`,
+    `http://api.weatherapi.com/v1/forecast.json?key=9a797f1496834c0f832210746210312&q==${cityName})}&days=7`,
   )
     .then((response) => response.json())
     .then((data) => {
       console.log(data)
       datafetched = [...data.forecast.forecastday]
-      document.getElementById('time-zone').innerHTML = data.location.tz_id
-      document.getElementById('country').innerHTML = data.location.country
+      document.getElementById('time-zone').innerHTML = data.location.name
+      document.getElementById('country').innerHTML = data.location.region
+      document.getElementById('time').innerHTML = data.location.localtime
       renderCurrent(data)
       renderDays(data.forecast.forecastday)
     })
@@ -28,20 +28,27 @@ fetchData('london')
 
 let cityList = []
 
-const fetchDropDownList = () => {
-  // const myData = await fetch('https://weather-app-raulmandujano-default-rtdb.firebaseio.com/cityList.json')
-  fetch(
-    'https://weather-app-raulmandujano-default-rtdb.firebaseio.com/cityList.json',
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      renderDropDown(data)
-      cityList = data
-    })
-    .catch((error) => {
-      console.error('Error:', error)
-    })
-}
+const fetchDropDownList = async () => {
+  const querySnapshot = await readCities();
+  querySnapshot.forEach((data) => { 
+    console.log('data' , data.data());
+  cityList.push( { cityId : data.id , cityName : data.data().cityName} );
+});
+renderDropDown(cityList)
+ 
+
+//   fetch(
+//     'https://weather-app-raulmandujano-default-rtdb.firebaseio.com/cityList.json',
+//   )
+//     .then((response) => response.json())
+//     .then((data) => {
+//       renderDropDown(data)
+//       cityList = data
+//     })
+//     .catch((error) => {
+//       console.error('Error:', error)
+//     })
+ }
 
 fetchDropDownList()
 
@@ -92,6 +99,7 @@ const renderDays = (forecastDays) => {
     .map((forecastDay) => generateDOMElement(forecastDay))
     .join('')
   document.getElementById('weather-forecast').innerHTML = forecastDOM
+  generateHourlyDOMElement(forecastDays[0].date_epoch)
 }
 
 const generateDOMElement = (data) => `<div class="forecast-weather">
@@ -169,8 +177,8 @@ const renderDropDown = (cityList) => {
     .map(
       (element, index) =>
         `<li><a class="dropdown-item" href="#"   
-  onclick="showCity('${element}')" >${element}</a>
-  <button onclick="deleteCity('${index}')">Delete</button>
+  onclick="showCity('${element.cityName}')" >${element.cityName}</a>
+  <button onclick="deleteCity('${index}','${element.cityId}')">Delete</button>
   </li>`,
     )
     .join('')
@@ -180,17 +188,20 @@ const showCity = (name) => {
   fetchData(name)
 }
 
-const deleteCity = (index) => {
+const deleteCity = (index , cityId = '') => {
   cityList.splice(index, 1)
   renderDropDown(cityList)
   const data = { cityList }
   updateDatabase(data)
+  deleteCities(cityId)
 }
 
-const saveCity = () => {
-  if (cityToSave) {
-    cityList.push(cityToSave)
-    renderDropDown(cityList)
-    updateDatabase(cityList)
-  }
+const saveCity = (cityName) => {
+  console.log(cityName)
+  saveCities(cityName)
+  // if (cityToSave) {
+  //   cityList.push(cityToSave)
+  //   renderDropDown(cityList)
+  //   updateDatabase(cityList)
+  // }
 }
